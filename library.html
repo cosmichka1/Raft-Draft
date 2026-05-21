@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Библиотека — Raft & Draft</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#fff;}
+.site{font-family:'Inter',sans-serif;color:#111;max-width:680px;margin:0 auto;background:#fff;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:#111;}
+.nav-logo img{height:90px;width:auto;display:block;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:12px;font-weight:400;color:#ccc;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;}
+.nav-links a:hover{color:#fff;}
+.nav-links a.active{color:#fff;border-bottom:1px solid #fff;}
+.nav-submit{background:#fff;color:#111!important;padding:6px 14px;font-size:11px!important;letter-spacing:.06em!important;border-radius:20px;border-bottom:none!important;}
+.tag{font-size:11px;color:#555;border:.5px solid #bbb;padding:3px 10px;border-radius:20px;}
+.tag.genre{border-color:#2D3561;color:#2D3561;}
+.pill{font-size:11px;color:#aaa;border:.5px solid #ddd;padding:3px 10px;border-radius:20px;}
+.footer{padding:20px 0;border-top:1px solid #ddd;margin-top:32px;text-align:center;}
+.footer-copy{font-size:11px;color:#999;letter-spacing:.04em;}
+
+.page-header{padding:28px 0 20px;border-bottom:1px solid #111;}
+.page-title{font-family:'EB Garamond',serif;font-size:32px;font-weight:700;color:#111;margin-bottom:4px;}
+.page-count{font-size:12px;color:#aaa;}
+.filters{padding:18px 0;border-bottom:1px solid #ddd;display:flex;flex-direction:column;gap:12px;}
+.filter-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.filter-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;min-width:48px;}
+.filter-btn{font-size:11px;color:#555;border:.5px solid #bbb;padding:4px 12px;border-radius:20px;cursor:pointer;background:#fff;}
+.filter-btn.active{background:#111;color:#fff;border-color:#111;}
+.filter-btn:hover{border-color:#111;color:#111;}
+.filter-btn.active:hover{background:#333;}
+.work-card{padding:18px 0;border-bottom:1px solid #ddd;}
+.work-card:last-child{border-bottom:none;}
+.card-top{display:grid;grid-template-columns:1fr 48px;gap:12px;align-items:start;}
+.card-type{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-bottom:6px;}
+.card-title{font-family:'EB Garamond',serif;font-size:20px;font-weight:700;line-height:1.15;color:#111;margin-bottom:10px;cursor:pointer;text-decoration:none;display:block;}
+.card-title:hover{text-decoration:underline;}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.card-meta{display:flex;align-items:center;gap:8px;margin-top:4px;}
+.card-num{font-family:'EB Garamond',serif;font-size:26px;font-weight:400;color:#ddd;text-align:right;line-height:1;}
+.likes-btn{cursor:pointer;background:none;border:.5px solid #ddd;padding:3px 10px;border-radius:20px;font-size:11px;color:#aaa;font-family:'Inter',sans-serif;}
+.likes-btn:hover{color:#111;border-color:#aaa;}
+.loading{font-size:13px;color:#aaa;padding:20px 0;}
+#works-list{min-height:100px;}
+</style>
+</head>
+<body>
+<div class="site">
+  
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
+  <div class="nav-links">
+    <a href="library.html" id="nav-library">Библиотека</a>
+    <a href="about.html" id="nav-about">О журнале</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="nav-submit">Подать работу</a>
+  </div>
+</nav>
+  <div class="page-header">
+    <div class="page-title">Библиотека</div>
+    <div class="page-count" id="count"></div>
+  </div>
+  <div class="filters">
+    <div class="filter-row">
+      <span class="filter-label">Тип</span>
+      <button class="filter-btn active" onclick="setFilter('type','')">Все</button>
+      <button class="filter-btn" onclick="setFilter('type','Проза')">Проза</button>
+      <button class="filter-btn" onclick="setFilter('type','Поэзия')">Поэзия</button>
+      <button class="filter-btn" onclick="setFilter('type','Сценарий')">Сценарий</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Жанр</span>
+      <button class="filter-btn active" onclick="setFilter('genre','')">Все</button>
+      <button class="filter-btn" onclick="setFilter('genre','Драма')">Драма</button>
+      <button class="filter-btn" onclick="setFilter('genre','Комедия')">Комедия</button>
+      <button class="filter-btn" onclick="setFilter('genre','Хоррор')">Хоррор</button>
+      <button class="filter-btn" onclick="setFilter('genre','Фантастика')">Фантастика</button>
+      <button class="filter-btn" onclick="setFilter('genre','Романтика')">Романтика</button>
+      <button class="filter-btn" onclick="setFilter('genre','Триллер')">Триллер</button>
+    </div>
+  </div>
+  <div id="works-list"><div class="loading">Загрузка...</div></div>
+  <div class="footer"><div class="footer-copy">© 2026 Raft & Draft. Все права защищены.</div></div>
+</div>
+<script>
+const SUPABASE_URL = 'https://jklglpxcspykidibuyra.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_q2fsDKFZ_RATNkQ96JuqlQ_XWQTIv0g';
+let filters = {type:'', genre:''};
+let allWorks = [];
+
+async function load() {
+  const res = await fetch(SUPABASE_URL + '/rest/v1/works?order=created_at.desc', {
+    headers: {'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY}
+  });
+  allWorks = await res.json();
+  render();
+}
+
+function render() {
+  let works = allWorks;
+  if (filters.type) works = works.filter(w => w.type === filters.type);
+  if (filters.genre) works = works.filter(w => w.genre === filters.genre);
+  document.getElementById('count').textContent = works.length + ' ' + plural(works.length, 'работа','работы','работ');
+  const list = document.getElementById('works-list');
+  if (!works.length) { list.innerHTML = '<div class="loading">Работ не найдено.</div>'; return; }
+  list.innerHTML = works.map((w, i) => `
+    <div class="work-card">
+      <div class="card-top">
+        <div>
+          <div class="card-type">${w.type}</div>
+          <a class="card-title" href="work.html?id=${w.id}">${w.title}</a>
+          <div class="card-tags">
+            <span class="tag">${w.author}</span>
+            ${w.age ? '<span class="tag">' + w.age + ' лет</span>' : ''}
+            ${w.city ? '<span class="tag">' + w.city + '</span>' : ''}
+            <span class="tag genre">${w.genre}</span>
+          </div>
+          <div class="card-meta">
+            <span class="pill">${new Date(w.created_at).toLocaleDateString('ru-RU', {day:'numeric',month:'long',year:'numeric'})}</span>
+            <button class="likes-btn" data-likes="${w.likes}" onclick="like('${w.id}', parseInt(this.dataset.likes), this)">♡ ${w.likes}</button>
+          </div>
+        </div>
+        <div class="card-num">${String(i+1).padStart(2,'0')}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setFilter(key, val) {
+  filters[key] = val;
+  document.querySelectorAll('.filter-row').forEach(row => {
+    const label = row.querySelector('.filter-label').textContent.toLowerCase();
+    if ((key==='type' && label==='тип') || (key==='genre' && label==='жанр')) {
+      row.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.textContent === (val||'Все'));
+      });
+    }
+  });
+  render();
+}
+
+async function like(id, current, btn) {
+  const newCount = current + 1;
+  await fetch(SUPABASE_URL + '/rest/v1/works?id=eq.' + id, {
+    method: 'PATCH',
+    headers: {'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal'},
+    body: JSON.stringify({likes: newCount})
+  });
+  btn.textContent = '♡ ' + newCount;
+  btn.dataset.likes = newCount;
+}
+
+function plural(n, one, few, many) {
+  if (n%10===1 && n%100!==11) return one;
+  if ([2,3,4].includes(n%10) && ![12,13,14].includes(n%100)) return few;
+  return many;
+}
+
+load();
+</script>
+</body>
+</html>

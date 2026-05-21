@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О журнале — Raft & Draft</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#fff;}
+.site{font-family:'Inter',sans-serif;color:#111;max-width:680px;margin:0 auto;background:#fff;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:#111;}
+.nav-logo img{height:90px;width:auto;display:block;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:12px;font-weight:400;color:#ccc;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;}
+.nav-links a:hover{color:#fff;}
+.nav-links a.active{color:#fff;border-bottom:1px solid #fff;}
+.nav-submit{background:#fff;color:#111!important;padding:6px 14px;font-size:11px!important;letter-spacing:.06em!important;border-radius:20px;border-bottom:none!important;}
+.footer{padding:20px 0;border-top:1px solid #ddd;margin-top:32px;text-align:center;}
+.footer-copy{font-size:11px;color:#999;letter-spacing:.04em;}
+
+.page-header{padding:28px 0 24px;border-bottom:1px solid #111;}
+.page-title{font-family:'EB Garamond',serif;font-size:32px;font-weight:700;color:#111;}
+.section{padding:28px 0;border-bottom:1px solid #ddd;}
+.section:last-of-type{border-bottom:none;}
+.section-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;font-weight:500;margin-bottom:16px;}
+.section-text{font-family:'EB Garamond',serif;font-size:17px;color:#222;line-height:1.8;}
+.section-text p{margin-bottom:1em;}
+.section-text p:last-child{margin-bottom:0;}
+.principles{display:flex;flex-direction:column;}
+.principle{display:flex;gap:16px;padding:14px 0;border-bottom:.5px solid #f0f0f0;}
+.principle:last-child{border-bottom:none;}
+.principle-num{font-family:'EB Garamond',serif;font-size:18px;color:#ddd;flex-shrink:0;width:24px;}
+.principle-text{font-size:13px;color:#444;line-height:1.7;letter-spacing:.01em;}
+.principle-text strong{color:#111;font-weight:500;font-family:'EB Garamond',serif;font-size:16px;letter-spacing:0;}
+.contact-block{display:flex;gap:24px;flex-wrap:wrap;margin-top:4px;}
+.contact-item{display:flex;flex-direction:column;gap:4px;}
+.contact-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;}
+.contact-value{font-size:13px;color:#111;border:.5px solid #ddd;padding:4px 12px;border-radius:20px;display:inline-block;}
+</style>
+</head>
+<body>
+<div class="site">
+  
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
+  <div class="nav-links">
+    <a href="library.html">Библиотека</a>
+    <a href="about.html" class="active">О журнале</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="nav-submit">Подать работу</a>
+  </div>
+</nav>
+  <div class="page-header"><div class="page-title">О журнале</div></div>
+  <div class="section">
+    <div class="section-label">Что такое Raft & Draft</div>
+    <div class="section-text">
+      <p>Raft & Draft — независимый литературный журнал для авторов до 18 лет. Мы публикуем прозу, поэзию и сценарии на русском языке.</p>
+      <p>Журнал основан в 2026 году. Название отражает идею: черновик — это не слабость, это начало. Каждый текст здесь был когда-то наброском на листке бумаги.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-label">Принципы</div>
+    <div class="principles">
+      <div class="principle"><div class="principle-num">1</div><div class="principle-text"><strong>Обратная связь на каждый отказ.</strong> Если работа нам не подошла, вы узнаете почему.</div></div>
+      <div class="principle"><div class="principle-num">2</div><div class="principle-text"><strong>Без ИИ.</strong> Мы публикуем только то, что написал человек.</div></div>
+      <div class="principle"><div class="principle-num">3</div><div class="principle-text"><strong>Без выпусков.</strong> Работы выходят сразу после модерации, не нужно ждать следующего номера.</div></div>
+      <div class="principle"><div class="principle-num">4</div><div class="principle-text"><strong>Срок ответа до 4 недель.</strong> Мы стараемся отвечать быстрее.</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-label">Редакция</div>
+    <div class="section-text">
+      <p>Журнал основан и редактируется Софией Одинцовой — писателем, сценаристом и режиссёром из Москвы. Редакция работает как независимый проект без коммерческих интересов.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-label">Связаться</div>
+    <div class="contact-block">
+      <div class="contact-item"><span class="contact-label">Telegram</span><span class="contact-value">@raft_and_raft</span></div>
+      <div class="contact-item"><span class="contact-label">Сайт</span><span class="contact-value">raft-and-draft.com</span></div>
+    </div>
+  </div>
+  <div class="footer"><div class="footer-copy">© 2026 Raft & Draft. Все права защищены.</div></div>
+</div>
+</body>
+</html>
