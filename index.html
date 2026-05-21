@@ -10,8 +10,7 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{background:#fff;}
 .site{font-family:'Inter',sans-serif;color:#111;max-width:680px;margin:0 auto;background:#fff;padding:0 20px;}@media(min-width:720px){.site{padding:0;}}
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px calc(50vw - 340px);background:#111;}
-@media(max-width:720px){nav{padding:18px 20px;}}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:#111;width:100%;}
 .nav-logo img{height:90px;width:auto;display:block;}
 .nav-links{display:flex;gap:24px;align-items:center;}
 .nav-links a{font-size:12px;font-weight:400;color:#ccc;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;}
@@ -46,8 +45,6 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px c
 </style>
 </head>
 <body>
-<div class="site">
-  
 <nav>
   <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
   <div class="nav-links">
@@ -56,6 +53,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px c
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="nav-submit">Подать работу</a>
   </div>
 </nav>
+<div class="site">
   <div class="section-header">
     <div class="section-title">Последние публикации</div>
     <a href="library.html" class="section-link">Вся библиотека →</a>
