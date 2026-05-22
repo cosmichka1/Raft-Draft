@@ -38,6 +38,15 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .contact-item{display:flex;flex-direction:column;gap:4px;}
 .contact-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;}
 .contact-value{font-size:13px;color:#111;border:.5px solid #ddd;padding:4px 12px;border-radius:20px;display:inline-block;}
+
+.subscribe-strip{border-top:1px solid #ddd;padding:24px 0;margin-top:32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.subscribe-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;flex-shrink:0;}
+.subscribe-text{font-size:13px;color:#555;flex-shrink:0;}
+.subscribe-form{display:flex;gap:8px;flex:1;min-width:240px;}
+.subscribe-input{flex:1;border:.5px solid #ddd;padding:8px 12px;font-family:'Inter',sans-serif;font-size:12px;color:#111;outline:none;min-width:0;}
+.subscribe-input:focus{border-color:#111;}
+.subscribe-btn{font-size:11px;color:#fff;background:#111;border:none;padding:8px 16px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;border-radius:20px;white-space:nowrap;}
+.subscribe-btn:hover{background:#333;}
 </style>
 </head>
 <body>
@@ -45,6 +54,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
   <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
   <div class="nav-links">
     <a href="library.html">Библиотека</a>
+    <a href="guidelines.html">Гайдлайны</a>
     <a href="about.html" class="active">О журнале</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="nav-submit">Подать работу</a>
   </div>
@@ -79,6 +89,16 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
       <div class="contact-item"><span class="contact-label">Telegram</span><span class="contact-value">@raft_and_raft</span></div>
       <div class="contact-item"><span class="contact-label">Сайт</span><span class="contact-value">raft-and-draft.com</span></div>
     </div>
+  </div>
+  
+  <div class="subscribe-strip">
+    <div class="subscribe-label">Рассылка</div>
+    <div class="subscribe-text">Новые работы — сразу на почту.</div>
+    <form action="https://raft-and-draft.us2.list-manage.com/subscribe/post?u=214012e6e7b78ed0c2fc0a140&id=7ea7b3c929&f_id=0046c2e1f0" method="post" target="_blank" class="subscribe-form">
+      <input type="email" name="EMAIL" placeholder="your@email.com" required class="subscribe-input" />
+      <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_214012e6e7b78ed0c2fc0a140_7ea7b3c929" tabindex="-1" value=""></div>
+      <button type="submit" class="subscribe-btn">Подписаться</button>
+    </form>
   </div>
   <div class="footer"><div class="footer-copy">© 2026 Raft & Draft. Все права защищены.</div></div>
 </div>

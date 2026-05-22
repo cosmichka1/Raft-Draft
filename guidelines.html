@@ -38,6 +38,15 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .submit-btn:hover{background:#333;}
 .footer{padding:20px 0;border-top:1px solid #ddd;margin-top:32px;text-align:center;}
 .footer-copy{font-size:11px;color:#999;letter-spacing:.04em;}
+
+.subscribe-strip{border-top:1px solid #ddd;padding:24px 0;margin-top:32px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.subscribe-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;flex-shrink:0;}
+.subscribe-text{font-size:13px;color:#555;flex-shrink:0;}
+.subscribe-form{display:flex;gap:8px;flex:1;min-width:240px;}
+.subscribe-input{flex:1;border:.5px solid #ddd;padding:8px 12px;font-family:'Inter',sans-serif;font-size:12px;color:#111;outline:none;min-width:0;}
+.subscribe-input:focus{border-color:#111;}
+.subscribe-btn{font-size:11px;color:#fff;background:#111;border:none;padding:8px 16px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;border-radius:20px;white-space:nowrap;}
+.subscribe-btn:hover{background:#333;}
 </style>
 </head>
 <body>
@@ -45,6 +54,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
   <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
   <div class="nav-links">
     <a href="library.html">Библиотека</a>
+    <a href="guidelines.html" class="active">Гайдлайны</a>
     <a href="about.html">О журнале</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="nav-submit">Подать работу</a>
   </div>
@@ -98,6 +108,16 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="submit-btn">Подать работу</a>
   </div>
 
+  
+  <div class="subscribe-strip">
+    <div class="subscribe-label">Рассылка</div>
+    <div class="subscribe-text">Новые работы — сразу на почту.</div>
+    <form action="https://raft-and-draft.us2.list-manage.com/subscribe/post?u=214012e6e7b78ed0c2fc0a140&id=7ea7b3c929&f_id=0046c2e1f0" method="post" target="_blank" class="subscribe-form">
+      <input type="email" name="EMAIL" placeholder="your@email.com" required class="subscribe-input" />
+      <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_214012e6e7b78ed0c2fc0a140_7ea7b3c929" tabindex="-1" value=""></div>
+      <button type="submit" class="subscribe-btn">Подписаться</button>
+    </form>
+  </div>
   <div class="footer">
     <div class="footer-copy">© 2026 Raft & Draft. Все права защищены.</div>
   </div>
