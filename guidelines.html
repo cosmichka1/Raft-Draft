@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гайдлайны — Raft & Draft</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#fff;}
+.site{font-family:'Inter',sans-serif;color:#111;max-width:680px;margin:0 auto;background:#fff;padding:0 20px;}
+@media(min-width:720px){.site{padding:0;}}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:#111;width:100%;}
+.nav-logo img{height:90px;width:auto;display:block;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:12px;font-weight:400;color:#ccc;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;}
+.nav-links a:hover{color:#fff;}
+.nav-submit{background:#fff;color:#111!important;padding:6px 14px;font-size:11px!important;letter-spacing:.06em!important;border-radius:20px;border-bottom:none!important;}
+.page-header{padding:28px 0 24px;border-bottom:1px solid #111;}
+.page-title{font-family:'EB Garamond',serif;font-size:32px;font-weight:700;color:#111;}
+.section{padding:28px 0;border-bottom:1px solid #ddd;}
+.section:last-of-type{border-bottom:none;}
+.section-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;font-weight:500;margin-bottom:16px;}
+.req-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.req-card{border:.5px solid #ddd;padding:14px 16px;}
+.req-card-type{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#2D3561;margin-bottom:8px;font-weight:500;}
+.req-card-line{font-size:12px;color:#555;line-height:1.7;}
+.rule{font-size:13px;color:#444;line-height:1.7;padding:8px 0;border-bottom:.5px solid #f0f0f0;display:flex;gap:10px;}
+.rule:last-child{border-bottom:none;}
+.rule-dot{color:#2D3561;flex-shrink:0;}
+.policy-block{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px;border:.5px solid #ddd;}
+.policy-text{font-size:13px;color:#444;line-height:1.6;}
+.policy-text strong{color:#111;}
+.policy-btn{font-size:11px;color:#111;border:.5px solid #111;padding:8px 18px;border-radius:20px;text-decoration:none;white-space:nowrap;flex-shrink:0;letter-spacing:.06em;text-transform:uppercase;}
+.policy-btn:hover{background:#111;color:#fff;}
+.submit-block{text-align:center;padding:32px 0;}
+.submit-btn{background:#111;color:#fff;border:none;padding:12px 40px;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:20px;text-decoration:none;display:inline-block;}
+.submit-btn:hover{background:#333;}
+.footer{padding:20px 0;border-top:1px solid #ddd;margin-top:32px;text-align:center;}
+.footer-copy{font-size:11px;color:#999;letter-spacing:.04em;}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
+  <div class="nav-links">
+    <a href="library.html">Библиотека</a>
+    <a href="about.html">О журнале</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="nav-submit">Подать работу</a>
+  </div>
+</nav>
+<div class="site">
+  <div class="page-header">
+    <div class="page-title">Гайдлайны</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Требования к формату</div>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-card-type">Проза</div>
+        <div class="req-card-line">До 5 000 слов</div>
+        <div class="req-card-line">Times New Roman 12</div>
+        <div class="req-card-line">Двойной интервал</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">Поэзия</div>
+        <div class="req-card-line">До 100 строк</div>
+        <div class="req-card-line">Times New Roman 12</div>
+        <div class="req-card-line">Одинарный интервал</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">Сценарий</div>
+        <div class="req-card-line">До 20 страниц</div>
+        <div class="req-card-line">Courier New 12</div>
+        <div class="req-card-line">Стандартный формат</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Условия подачи</div>
+    <div class="rule"><span class="rule-dot">—</span><span>Авторы до 18 лет</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>Работы на русском или английском языке</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>Работы, написанные с помощью ИИ, не принимаются</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>Срок ответа до 4 недель. Мы даём обратную связь на каждый отказ</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Политика журнала</div>
+    <div class="policy-block">
+      <div class="policy-text">Перед подачей ознакомьтесь с полной политикой журнала. Отправляя работу, вы подтверждаете согласие с её условиями.</div>
+      <a href="raft-draft-policy.pdf" target="_blank" class="policy-btn">Читать политику</a>
+    </div>
+  </div>
+
+  <div class="submit-block">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="submit-btn">Подать работу</a>
+  </div>
+
+  <div class="footer">
+    <div class="footer-copy">© 2026 Raft & Draft. Все права защищены.</div>
+  </div>
+</div>
+</body>
+</html>
