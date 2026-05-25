@@ -65,7 +65,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
     <a href="library.html" id="nav-library">Библиотека</a>
     <a href="guidelines.html">Гайдлайны</a>
     <a href="about.html" id="nav-about">О журнале</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdKL0W-uNZ7PUDgZoWYnVMaARBgQnxY4mrbmILQDD5bpYpnFw/viewform" target="_blank" class="nav-submit">Подать работу</a>
+    <a href="https://forms.gle/35KAnAGAopDRZnUy6" target="_blank" class="nav-submit">Подать работу</a>
   </div>
 </nav>
 <div class="site">
@@ -80,16 +80,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
       <button class="filter-btn" onclick="setFilter('type','Проза')">Проза</button>
       <button class="filter-btn" onclick="setFilter('type','Поэзия')">Поэзия</button>
       <button class="filter-btn" onclick="setFilter('type','Сценарий')">Сценарий</button>
-    </div>
-    <div class="filter-row">
-      <span class="filter-label">Жанр</span>
-      <button class="filter-btn active" onclick="setFilter('genre','')">Все</button>
-      <button class="filter-btn" onclick="setFilter('genre','Драма')">Драма</button>
-      <button class="filter-btn" onclick="setFilter('genre','Комедия')">Комедия</button>
-      <button class="filter-btn" onclick="setFilter('genre','Хоррор')">Хоррор</button>
-      <button class="filter-btn" onclick="setFilter('genre','Фантастика')">Фантастика</button>
-      <button class="filter-btn" onclick="setFilter('genre','Романтика')">Романтика</button>
-      <button class="filter-btn" onclick="setFilter('genre','Триллер')">Триллер</button>
+      <button class="filter-btn" onclick="setFilter('type','Пьеса')">Пьеса</button>
+      <button class="filter-btn" onclick="setFilter('type','Статья')">Статья</button>
     </div>
   </div>
   <div id="works-list"><div class="loading">Загрузка...</div></div>
@@ -108,7 +100,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 <script>
 const SUPABASE_URL = 'https://jklglpxcspykidibuyra.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_q2fsDKFZ_RATNkQ96JuqlQ_XWQTIv0g';
-let filters = {type:'', genre:''};
+let filters = {type:''};
 let allWorks = [];
 
 async function load() {
@@ -122,7 +114,6 @@ async function load() {
 function render() {
   let works = allWorks;
   if (filters.type) works = works.filter(w => w.type === filters.type);
-  if (filters.genre) works = works.filter(w => w.genre === filters.genre);
   document.getElementById('count').textContent = works.length + ' ' + plural(works.length, 'работа','работы','работ');
   const list = document.getElementById('works-list');
   if (!works.length) { list.innerHTML = '<div class="loading">Работ не найдено.</div>'; return; }
