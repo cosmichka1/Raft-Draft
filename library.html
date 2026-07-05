@@ -73,14 +73,6 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
     <div class="page-title">Библиотека</div>
     <div class="page-count" id="count"></div>
   </div>
-  <div style="border:.5px solid #111;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:20px 0;">
-    <div>
-      <div style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;margin-bottom:8px;">Специальное предложение</div>
-      <div style="font-family:'EB Garamond',serif;font-size:20px;font-weight:700;color:#111;margin-bottom:6px;">Первые 10 авторов получат личную рецензию</div>
-      <div style="font-size:13px;color:#555;">от главного редактора — до 1 июля</div>
-    </div>
-    <a href="https://forms.gle/35KAnAGAopDRZnUy6" target="_blank" style="background:#111;color:#fff;padding:10px 24px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;text-decoration:none;white-space:nowrap;flex-shrink:0;">Подать работу</a>
-  </div>
   <div class="filters">
     <div class="filter-row">
       <span class="filter-label">Тип</span>
@@ -90,6 +82,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
       <button class="filter-btn" onclick="setFilter('type','Сценарий')">Сценарий</button>
       <button class="filter-btn" onclick="setFilter('type','Пьеса')">Пьеса</button>
       <button class="filter-btn" onclick="setFilter('type','Статья')">Статья</button>
+      <button class="filter-btn" onclick="setFilter('type','Эссе')">Эссе</button>
     </div>
   </div>
   <div id="works-list"><div class="loading">Загрузка...</div></div>
