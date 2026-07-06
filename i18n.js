@@ -4,7 +4,7 @@
 
 const RD_FORM_URL = {
   ru: 'https://forms.gle/35KAnAGAopDRZnUy6',
-  en: 'REPLACE_WITH_ENGLISH_FORM_URL'
+  en: 'https://forms.gle/dgpoLszyAh2JYkX19'
 };
 
 const RD_TYPE_LABEL = {
@@ -149,7 +149,7 @@ const RD_STR = {
     ab_p4_bold: 'Response within 4 weeks.',
     ab_p4_text: 'We usually reply faster.',
     ab_editorial_label: 'Editorial team',
-    ab_editorial_text: 'The journal was founded and is edited by Sofia Odintsova \u2013 a writer, screenwriter, and director based in Moscow. The editorial team operates as an independent project with no commercial interests.',
+    ab_editorial_text: 'The journal was founded and is edited by Sofiya Odintsova \u2013 a writer, screenwriter, and director based in Moscow. The editorial team operates as an independent project with no commercial interests.',
     ab_contact_label: 'Contact',
     ab_contact_telegram_label: 'Telegram',
     ab_contact_site_label: 'Website',
