@@ -15,7 +15,10 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .nav-links{display:flex;gap:24px;align-items:center;}
 .nav-links a{font-size:12px;font-weight:400;color:#ccc;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;}
 .nav-links a:hover{color:#fff;}
+.nav-links a.active{color:#fff;border-bottom:1px solid #fff;}
 .nav-submit{background:#fff;color:#111!important;padding:6px 14px;font-size:11px!important;letter-spacing:.06em!important;border-radius:20px;border-bottom:none!important;}
+.lang-btn{font-size:11px;color:#ccc;border:.5px solid #555;padding:5px 10px;border-radius:14px;cursor:pointer;background:transparent;font-family:'Inter',sans-serif;letter-spacing:.04em;}
+.lang-btn:hover{color:#fff;border-color:#999;}
 .page-header{padding:28px 0 24px;border-bottom:1px solid #111;}
 .page-title{font-family:'EB Garamond',serif;font-size:32px;font-weight:700;color:#111;}
 .section{padding:28px 0;border-bottom:1px solid #ddd;}
@@ -49,97 +52,105 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .subscribe-btn:hover{background:#333;}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
+<script src="i18n.js"></script>
 </head>
 <body>
 <nav>
   <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
   <div class="nav-links">
-    <a href="library.html">Библиотека</a>
-    <a href="guidelines.html" class="active">Гайдлайны</a>
-    <a href="about.html">О журнале</a>
-    <a href="https://forms.gle/35KAnAGAopDRZnUy6" target="_blank" class="nav-submit">Подать работу</a>
+    <a href="library.html" data-i18n="nav_library">Библиотека</a>
+    <a href="guidelines.html" class="active" data-i18n="nav_guidelines">Гайдлайны</a>
+    <a href="about.html" data-i18n="nav_about">О журнале</a>
+    <a href="#" id="nav-submit-link" target="_blank" class="nav-submit" data-i18n="nav_submit">Подать работу</a>
+    <button class="lang-btn" id="lang-btn" onclick="rdToggleLang()">EN</button>
   </div>
 </nav>
 <div class="site">
   <div class="page-header">
-    <div class="page-title">Гайдлайны</div>
+    <div class="page-title" data-i18n="gl_title">Гайдлайны</div>
   </div>
 
   <div class="section">
-    <div class="section-label">Требования к формату</div>
+    <div class="section-label" data-i18n="gl_format_label">Требования к формату</div>
     <div class="req-grid" style="grid-template-columns:1fr 1fr;">
       <div class="req-card">
-        <div class="req-card-type">Проза</div>
-        <div class="req-card-line">До 5 000 слов</div>
-        <div class="req-card-line">Times New Roman 12</div>
-        <div class="req-card-line">Двойной интервал</div>
+        <div class="req-card-type" data-type-key="Проза">Проза</div>
+        <div class="req-card-line" data-i18n="gl_prose_1">До 5 000 слов</div>
+        <div class="req-card-line" data-i18n="gl_prose_2">Times New Roman 12</div>
+        <div class="req-card-line" data-i18n="gl_prose_3">Двойной интервал</div>
       </div>
       <div class="req-card">
-        <div class="req-card-type">Поэзия</div>
-        <div class="req-card-line">До 100 строк</div>
-        <div class="req-card-line">Times New Roman 12</div>
-        <div class="req-card-line">Одинарный интервал</div>
+        <div class="req-card-type" data-type-key="Поэзия">Поэзия</div>
+        <div class="req-card-line" data-i18n="gl_poetry_1">До 100 строк</div>
+        <div class="req-card-line" data-i18n="gl_poetry_2">Times New Roman 12</div>
+        <div class="req-card-line" data-i18n="gl_poetry_3">Одинарный интервал</div>
       </div>
       <div class="req-card">
-        <div class="req-card-type">Сценарий</div>
-        <div class="req-card-line">До 30 страниц</div>
-        <div class="req-card-line">Courier New 12</div>
-        <div class="req-card-line">Стандартный формат</div>
+        <div class="req-card-type" data-type-key="Сценарий">Сценарий</div>
+        <div class="req-card-line" data-i18n="gl_script_1">До 30 страниц</div>
+        <div class="req-card-line" data-i18n="gl_script_2">Courier New 12</div>
+        <div class="req-card-line" data-i18n="gl_script_3">Стандартный формат</div>
       </div>
       <div class="req-card">
-        <div class="req-card-type">Пьеса</div>
-        <div class="req-card-line">До 30 страниц</div>
-        <div class="req-card-line">Courier New 12</div>
-        <div class="req-card-line">Стандартный формат</div>
+        <div class="req-card-type" data-type-key="Пьеса">Пьеса</div>
+        <div class="req-card-line" data-i18n="gl_play_1">До 30 страниц</div>
+        <div class="req-card-line" data-i18n="gl_play_2">Courier New 12</div>
+        <div class="req-card-line" data-i18n="gl_play_3">Стандартный формат</div>
       </div>
       <div class="req-card">
-        <div class="req-card-type">Статья</div>
-        <div class="req-card-line">До 2 000 слов</div>
-        <div class="req-card-line">Times New Roman 12</div>
-        <div class="req-card-line">Двойной интервал</div>
+        <div class="req-card-type" data-type-key="Статья">Статья</div>
+        <div class="req-card-line" data-i18n="gl_article_1">До 2 000 слов</div>
+        <div class="req-card-line" data-i18n="gl_article_2">Times New Roman 12</div>
+        <div class="req-card-line" data-i18n="gl_article_3">Двойной интервал</div>
       </div>
       <div class="req-card">
-        <div class="req-card-type">Эссе</div>
-        <div class="req-card-line">До 2 000 слов</div>
-        <div class="req-card-line">Times New Roman 12</div>
-        <div class="req-card-line">Двойной интервал</div>
+        <div class="req-card-type" data-type-key="Эссе">Эссе</div>
+        <div class="req-card-line" data-i18n="gl_essay_1">До 2 000 слов</div>
+        <div class="req-card-line" data-i18n="gl_essay_2">Times New Roman 12</div>
+        <div class="req-card-line" data-i18n="gl_essay_3">Двойной интервал</div>
       </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-label">Условия подачи</div>
-    <div class="rule"><span class="rule-dot">—</span><span>Авторы до 18 лет</span></div>
-    <div class="rule"><span class="rule-dot">—</span><span>Работы на русском или английском языке</span></div>
-    <div class="rule"><span class="rule-dot">—</span><span>Работы, написанные с помощью ИИ, не принимаются</span></div>
-    <div class="rule"><span class="rule-dot">—</span><span>Срок ответа до 4 недель. Мы даём обратную связь на каждый отказ</span></div>
+    <div class="section-label" data-i18n="gl_terms_label">Условия подачи</div>
+    <div class="rule"><span class="rule-dot">—</span><span data-i18n="gl_rule_1">Авторы до 18 лет</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span data-i18n="gl_rule_2">Работы на русском или английском языке</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span data-i18n="gl_rule_3">Работы, написанные с помощью ИИ, не принимаются</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span data-i18n="gl_rule_4">Срок ответа до 4 недель. Мы даём обратную связь на каждый отказ</span></div>
   </div>
 
   <div class="section">
-    <div class="section-label">Политика журнала</div>
+    <div class="section-label" data-i18n="gl_policy_label">Политика журнала</div>
     <div class="policy-block">
-      <div class="policy-text">Перед подачей ознакомьтесь с полной политикой журнала. Отправляя работу, вы подтверждаете согласие с её условиями.</div>
-      <a href="raft-draft-policy.pdf" target="_blank" class="policy-btn">Читать политику</a>
+      <div class="policy-text" data-i18n="gl_policy_text">Перед подачей ознакомьтесь с полной политикой журнала. Отправляя работу, вы подтверждаете согласие с её условиями.</div>
+      <a href="raft-draft-policy.pdf" target="_blank" class="policy-btn" id="policy-link" data-i18n="gl_policy_btn">Читать политику</a>
     </div>
   </div>
 
   <div class="submit-block">
-    <a href="https://forms.gle/35KAnAGAopDRZnUy6" target="_blank" class="submit-btn">Подать работу</a>
+    <a href="#" id="gl-submit-link" target="_blank" class="submit-btn" data-i18n="gl_submit_btn">Подать работу</a>
   </div>
 
-  
   <div class="subscribe-strip">
-    <div class="subscribe-label">Рассылка</div>
-    <div class="subscribe-text">Новые работы — сразу на почту.</div>
+    <div class="subscribe-label" data-i18n="subscribe_label">Рассылка</div>
+    <div class="subscribe-text" data-i18n="subscribe_text">Новые работы — сразу на почту.</div>
     <form action="https://raft-and-draft.us2.list-manage.com/subscribe/post?u=214012e6e7b78ed0c2fc0a140&id=7ea7b3c929&f_id=0046c2e1f0" method="post" target="_blank" class="subscribe-form">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required class="subscribe-input" />
+      <input type="email" name="EMAIL" placeholder="your@email.com" data-i18n-placeholder="subscribe_placeholder" required class="subscribe-input" />
       <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_214012e6e7b78ed0c2fc0a140_7ea7b3c929" tabindex="-1" value=""></div>
-      <button type="submit" class="subscribe-btn">Подписаться</button>
+      <button type="submit" class="subscribe-btn" data-i18n="subscribe_btn">Подписаться</button>
     </form>
   </div>
   <div class="footer">
-    <div class="footer-copy">© 2026 Raft & Draft. Все права защищены.</div>
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 Raft & Draft. Все права защищены.</div>
   </div>
 </div>
+<script>
+document.querySelectorAll('[data-type-key]').forEach(function(el){
+  el.textContent = rdTypeLabel(el.dataset.typeKey);
+});
+rdApplyStatic();
+document.getElementById('policy-link').href = rdLang() === 'en' ? 'raft-draft-policy-en.pdf' : 'raft-draft-policy.pdf';
+</script>
 </body>
 </html>
