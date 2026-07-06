@@ -34,6 +34,10 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .work-meta{display:flex;align-items:center;gap:8px;}
 .likes-btn{cursor:pointer;background:none;border:.5px solid #ddd;padding:3px 10px;border-radius:20px;font-size:11px;color:#aaa;font-family:'Inter',sans-serif;}
 .likes-btn:hover{color:#111;border-color:#aaa;}
+.work-description{font-size:15px;color:#555;line-height:1.7;font-style:italic;padding:16px 20px 0;font-family:'Inter',sans-serif;}
+.author-note{padding:20px;margin:0 20px;border-left:2px solid #2D3561;background:#fafafa;}
+.author-note-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#aaa;margin-bottom:8px;}
+.author-note-text{font-size:14px;color:#333;line-height:1.7;font-family:'EB Garamond',serif;font-style:italic;}
 .work-body{padding:32px 20px;border-bottom:1px solid #ddd;line-height:1.85;font-size:17px;color:#222;font-family:'EB Garamond',serif;}
 .work-body p{margin-bottom:1.2em;}
 .comments-section{padding:28px 20px;}
@@ -143,6 +147,8 @@ async function load() {
         <button class="likes-btn" data-likes="${w.likes}" onclick="like(parseInt(this.dataset.likes),this)">♡ ${w.likes}</button>
       </div>
     </div>
+    ${w.description ? '<div class="work-description">' + w.description + '</div>' : ''}
+    ${w.author_note ? '<div class="author-note"><div class="author-note-label">' + rdT('wk_author_note_label') + '</div><div class="author-note-text">' + w.author_note + '</div></div>' : ''}
     <div class="work-body">${w.content.split('\n').filter(p=>p.trim()).map(p=>'<p>'+p+'</p>').join('')}</div>
     <div class="comments-section">
       <div class="comments-title" id="comments-title">${rdT('wk_comments')}</div>

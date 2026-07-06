@@ -64,6 +64,7 @@ const RD_STR = {
     wk_name_placeholder: 'Ваше имя',
     wk_comment_placeholder: 'Напишите комментарий...',
     wk_comment_submit: 'Отправить',
+    wk_author_note_label: 'Слова автора',
     // about page
     ab_title: 'О журнале',
     ab_role: 'основатель и главный редактор',
@@ -133,6 +134,7 @@ const RD_STR = {
     wk_name_placeholder: 'Your name',
     wk_comment_placeholder: 'Write a comment...',
     wk_comment_submit: 'Post',
+    wk_author_note_label: "Author's note",
     ab_title: 'About the journal',
     ab_role: 'founder & editor in chief',
     ab_journal_label: 'About the journal',
