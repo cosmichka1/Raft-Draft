@@ -17,6 +17,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .nav-links a:hover{color:#fff;}
 .nav-links a.active{color:#fff;border-bottom:1px solid #fff;}
 .nav-submit{background:#fff;color:#111!important;padding:6px 14px;font-size:11px!important;letter-spacing:.06em!important;border-radius:20px;border-bottom:none!important;}
+.lang-btn{font-size:11px;color:#ccc;border:.5px solid #555;padding:5px 10px;border-radius:14px;cursor:pointer;background:transparent;font-family:'Inter',sans-serif;letter-spacing:.04em;}
+.lang-btn:hover{color:#fff;border-color:#999;}
 .footer{padding:20px 0;border-top:1px solid #ddd;margin-top:32px;text-align:center;}
 .footer-copy{font-size:11px;color:#999;letter-spacing:.04em;}
 
@@ -49,59 +51,68 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .subscribe-btn:hover{background:#333;}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
+<script src="i18n.js"></script>
 </head>
 <body>
 <nav>
   <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
   <div class="nav-links">
-    <a href="library.html">Библиотека</a>
-    <a href="guidelines.html">Гайдлайны</a>
-    <a href="about.html" class="active">О журнале</a>
-    <a href="https://forms.gle/35KAnAGAopDRZnUy6" target="_blank" class="nav-submit">Подать работу</a>
+    <a href="library.html" data-i18n="nav_library">Библиотека</a>
+    <a href="guidelines.html" data-i18n="nav_guidelines">Гайдлайны</a>
+    <a href="about.html" class="active" data-i18n="nav_about">О журнале</a>
+    <a href="#" id="nav-submit-link" target="_blank" class="nav-submit" data-i18n="nav_submit">Подать работу</a>
+    <button class="lang-btn" id="lang-btn" onclick="rdToggleLang()">EN</button>
   </div>
 </nav>
 <div class="site">
-  <div class="page-header"><div class="page-title">О журнале</div></div>
+  <div class="page-header"><div class="page-title" data-i18n="ab_title">О журнале</div></div>
+
   <div class="section">
-    <div class="section-label">Что такое Raft & Draft</div>
+    <div class="section-label" data-i18n="ab_what_label">Что такое Raft & Draft</div>
     <div class="section-text">
-      <p>Raft & Draft — независимый литературный журнал для авторов до 18 лет. Мы публикуем прозу, поэзию и сценарии на русском языке.</p>
-      <p>Журнал основан в 2026 году. Название отражает идею: черновик — это не слабость, это начало. Каждый текст здесь был когда-то наброском на листке бумаги.</p>
+      <p data-i18n="ab_what_p1">Raft & Draft — независимый литературный журнал для авторов до 18 лет. Мы публикуем прозу, поэзию и сценарии на русском и английском языках.</p>
+      <p data-i18n="ab_what_p2">Журнал основан в 2026 году. Название отражает идею: черновик — это не слабость, это начало. Каждый текст здесь был когда-то наброском на листке бумаги.</p>
     </div>
   </div>
+
   <div class="section">
-    <div class="section-label">Принципы</div>
+    <div class="section-label" data-i18n="ab_principles_label">Принципы</div>
     <div class="principles">
-      <div class="principle"><div class="principle-num">1</div><div class="principle-text"><strong>Обратная связь на каждый отказ.</strong> Если работа нам не подошла, вы узнаете почему.</div></div>
-      <div class="principle"><div class="principle-num">2</div><div class="principle-text"><strong>Без ИИ.</strong> Мы публикуем только то, что написал человек.</div></div>
-      <div class="principle"><div class="principle-num">3</div><div class="principle-text"><strong>Без выпусков.</strong> Работы выходят сразу после модерации, не нужно ждать следующего номера.</div></div>
-      <div class="principle"><div class="principle-num">4</div><div class="principle-text"><strong>Срок ответа до 4 недель.</strong> Мы стараемся отвечать быстрее.</div></div>
+      <div class="principle"><div class="principle-num">1</div><div class="principle-text"><strong data-i18n="ab_p1_bold">Обратная связь на каждый отказ.</strong> <span data-i18n="ab_p1_text">Если работа нам не подошла, вы узнаете почему.</span></div></div>
+      <div class="principle"><div class="principle-num">2</div><div class="principle-text"><strong data-i18n="ab_p2_bold">Без ИИ.</strong> <span data-i18n="ab_p2_text">Мы публикуем только то, что написал человек.</span></div></div>
+      <div class="principle"><div class="principle-num">3</div><div class="principle-text"><strong data-i18n="ab_p3_bold">Без выпусков.</strong> <span data-i18n="ab_p3_text">Работы выходят сразу после модерации, не нужно ждать следующего номера.</span></div></div>
+      <div class="principle"><div class="principle-num">4</div><div class="principle-text"><strong data-i18n="ab_p4_bold">Срок ответа до 4 недель.</strong> <span data-i18n="ab_p4_text">Мы стараемся отвечать быстрее.</span></div></div>
     </div>
   </div>
+
   <div class="section">
-    <div class="section-label">Редакция</div>
+    <div class="section-label" data-i18n="ab_editorial_label">Редакция</div>
     <div class="section-text">
-      <p>Журнал основан и редактируется Софией Одинцовой — писателем, сценаристом и режиссёром из Москвы. Редакция работает как независимый проект без коммерческих интересов.</p>
+      <p data-i18n="ab_editorial_text">Журнал основан и редактируется Софией Одинцовой — писателем, сценаристом и режиссёром из Москвы. Редакция работает как независимый проект без коммерческих интересов.</p>
     </div>
   </div>
+
   <div class="section">
-    <div class="section-label">Связаться</div>
+    <div class="section-label" data-i18n="ab_contact_label">Связаться</div>
     <div class="contact-block">
-      <div class="contact-item"><span class="contact-label">Telegram</span><span class="contact-value">@raft_and_raft</span></div>
-      <div class="contact-item"><span class="contact-label">Сайт</span><span class="contact-value">raft-and-draft.com</span></div>
+      <div class="contact-item"><span class="contact-label" data-i18n="ab_contact_telegram_label">Telegram</span><span class="contact-value">@raft_and_raft</span></div>
+      <div class="contact-item"><span class="contact-label" data-i18n="ab_contact_site_label">Сайт</span><span class="contact-value">raft-and-draft.com</span></div>
     </div>
   </div>
-  
+
   <div class="subscribe-strip">
-    <div class="subscribe-label">Рассылка</div>
-    <div class="subscribe-text">Новые работы — сразу на почту.</div>
+    <div class="subscribe-label" data-i18n="subscribe_label">Рассылка</div>
+    <div class="subscribe-text" data-i18n="subscribe_text">Новые работы — сразу на почту.</div>
     <form action="https://raft-and-draft.us2.list-manage.com/subscribe/post?u=214012e6e7b78ed0c2fc0a140&id=7ea7b3c929&f_id=0046c2e1f0" method="post" target="_blank" class="subscribe-form">
-      <input type="email" name="EMAIL" placeholder="your@email.com" required class="subscribe-input" />
+      <input type="email" name="EMAIL" placeholder="your@email.com" data-i18n-placeholder="subscribe_placeholder" required class="subscribe-input" />
       <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_214012e6e7b78ed0c2fc0a140_7ea7b3c929" tabindex="-1" value=""></div>
-      <button type="submit" class="subscribe-btn">Подписаться</button>
+      <button type="submit" class="subscribe-btn" data-i18n="subscribe_btn">Подписаться</button>
     </form>
   </div>
-  <div class="footer"><div class="footer-copy">© 2026 Raft & Draft. Все права защищены.</div></div>
+  <div class="footer"><div class="footer-copy" data-i18n="footer_copy">© 2026 Raft & Draft. Все права защищены.</div></div>
 </div>
+<script>
+rdApplyStatic();
+</script>
 </body>
 </html>
