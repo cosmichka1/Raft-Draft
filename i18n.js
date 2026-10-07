@@ -14,6 +14,7 @@ const RD_TYPE_LABEL = {
 
 const RD_STR = {
   ru: {
+    nav_contest: 'Конкурс',
     nav_library: 'Библиотека',
     nav_guidelines: 'Гайдлайны',
     nav_about: 'О журнале',
@@ -88,6 +89,7 @@ const RD_STR = {
     ab_contact_site_label: 'Сайт',
   },
   en: {
+    nav_contest: 'Contest',
     nav_library: 'Library',
     nav_guidelines: 'Guidelines',
     nav_about: 'About',

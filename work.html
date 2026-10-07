@@ -56,6 +56,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .comment-date{font-size:11px;color:#aaa;margin-left:8px;font-weight:400;}
 .comment-text{font-size:13px;color:#444;line-height:1.6;}
 .loading{font-size:13px;color:#aaa;padding:20px 0;}
+.nav-contest{color:#fff!important;}
+@media(max-width:640px){nav{flex-direction:column;align-items:flex-start;gap:14px;padding:16px 20px;}.nav-logo img{height:64px;}.nav-links{flex-wrap:wrap;gap:12px 16px;}}
 </style>
 <script src="i18n.js"></script>
 </head>
@@ -64,6 +66,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 <nav>
 <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
 <div class="nav-links">
+<a href="contest.html" class="nav-contest" data-i18n="nav_contest">Конкурс</a>
 <a href="library.html" id="nav-library" data-i18n="nav_library">Библиотека</a>
 <a href="guidelines.html" data-i18n="nav_guidelines">Гайдлайны</a>
 <a href="about.html" id="nav-about" data-i18n="nav_about">О журнале</a>

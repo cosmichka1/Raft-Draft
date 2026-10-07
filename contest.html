@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Конкурс короткой прозы — Raft & Draft</title>
+<meta name="description" content="Первый конкурс короткой прозы Raft & Draft: рассказы до 1500 слов, авторы до 18 лет, денежные призы и публикация для каждого участника. Прием до 29 октября 2026.">
+<meta property="og:title" content="Первый конкурс короткой прозы Raft & Draft">
+<meta property="og:description" content="Рассказы до 1500 слов, авторы до 18 лет. Денежные призы, независимое жюри, публикация для каждого участника. Прием до 29 октября.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://raft-and-draft.com/contest.html">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#fff;}
+.site{font-family:'Inter',sans-serif;color:#111;max-width:680px;margin:0 auto;background:#fff;padding:0 20px;}
+@media(min-width:720px){.site{padding:0;}}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:#111;width:100%;}
+.nav-logo img{height:90px;width:auto;display:block;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{font-size:12px;font-weight:400;color:#ccc;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;}
+.nav-links a:hover{color:#fff;}
+.nav-links a.active{color:#fff;border-bottom:1px solid #fff;}
+.nav-contest{color:#fff!important;}
+.nav-submit{background:#fff;color:#111!important;padding:6px 14px;font-size:11px!important;letter-spacing:.06em!important;border-radius:20px;border-bottom:none!important;}
+.lang-btn{font-size:11px;color:#ccc;border:.5px solid #555;padding:5px 10px;border-radius:14px;cursor:pointer;background:transparent;font-family:'Inter',sans-serif;letter-spacing:.04em;}
+.lang-btn:hover{color:#fff;border-color:#999;}
+.page-header{padding:28px 0 24px;border-bottom:1px solid #111;}
+.page-kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#2D3561;font-weight:500;margin-bottom:10px;}
+.page-title{font-family:'EB Garamond',serif;font-size:32px;font-weight:700;color:#111;line-height:1.15;}
+.page-lead{font-family:'EB Garamond',serif;font-size:19px;color:#444;line-height:1.5;margin-top:12px;}
+.section{padding:28px 0;border-bottom:1px solid #ddd;}
+.section-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;font-weight:500;margin-bottom:16px;}
+.req-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.req-card{border:.5px solid #ddd;padding:14px 16px;}
+.req-card-type{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#2D3561;margin-bottom:8px;font-weight:500;}
+.req-card-line{font-size:12px;color:#555;line-height:1.7;}
+.prize-sum{font-family:'EB Garamond',serif;font-size:26px;font-weight:700;color:#111;line-height:1.2;}
+.rule{font-size:13px;color:#444;line-height:1.7;padding:8px 0;border-bottom:.5px solid #f0f0f0;display:flex;gap:10px;}
+.rule:last-child{border-bottom:none;}
+.rule-dot{color:#2D3561;flex-shrink:0;}
+.dates{width:100%;border-collapse:collapse;}
+.dates td{font-size:13px;color:#444;line-height:1.6;padding:9px 0;border-bottom:.5px solid #f0f0f0;vertical-align:top;}
+.dates tr:last-child td{border-bottom:none;}
+.dates td:first-child{color:#111;font-weight:500;width:42%;padding-right:16px;}
+.submit-block{text-align:center;padding:32px 0;border-bottom:1px solid #ddd;}
+.submit-btn{background:#111;color:#fff;border:none;padding:14px 44px;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:20px;text-decoration:none;display:inline-block;}
+.submit-btn:hover{background:#333;}
+.submit-btn.is-off{background:#bbb;cursor:default;pointer-events:none;}
+.submit-note{font-size:12px;color:#888;margin-top:12px;line-height:1.6;}
+.terms h3{font-family:'EB Garamond',serif;font-size:20px;font-weight:700;color:#111;margin:22px 0 8px;}
+.terms h3:first-of-type{margin-top:0;}
+.terms p{font-size:13px;color:#444;line-height:1.7;margin-bottom:7px;}
+.terms p.cl{padding-left:38px;text-indent:-38px;}
+.terms p.cl b{color:#111;font-weight:500;display:inline-block;width:38px;text-indent:0;}
+.policy-block{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px;border:.5px solid #ddd;}
+.policy-text{font-size:13px;color:#444;line-height:1.6;}
+.policy-text a{color:#2D3561;}
+.policy-btn{font-size:11px;color:#111;border:.5px solid #111;padding:8px 18px;border-radius:20px;text-decoration:none;white-space:nowrap;flex-shrink:0;letter-spacing:.06em;text-transform:uppercase;}
+.policy-btn:hover{background:#111;color:#fff;}
+.footer{padding:20px 0;border-top:1px solid #ddd;margin-top:32px;text-align:center;}
+.footer-copy{font-size:11px;color:#999;letter-spacing:.04em;}
+.subscribe-strip{padding:24px 0;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.subscribe-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#aaa;flex-shrink:0;}
+.subscribe-text{font-size:13px;color:#555;flex-shrink:0;}
+.subscribe-form{display:flex;gap:8px;flex:1;min-width:240px;}
+.subscribe-input{flex:1;border:.5px solid #ddd;padding:8px 12px;font-family:'Inter',sans-serif;font-size:12px;color:#111;outline:none;min-width:0;}
+.subscribe-input:focus{border-color:#111;}
+.subscribe-btn{font-size:11px;color:#fff;background:#111;border:none;padding:8px 16px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;border-radius:20px;white-space:nowrap;}
+.subscribe-btn:hover{background:#333;}
+@media(max-width:640px){nav{flex-direction:column;align-items:flex-start;gap:14px;padding:16px 20px;}.nav-logo img{height:64px;}.nav-links{flex-wrap:wrap;gap:12px 16px;}}
+@media(max-width:560px){
+  .req-grid{grid-template-columns:1fr;}
+  .page-title{font-size:27px;}
+  .policy-block{flex-direction:column;align-items:flex-start;}
+  .dates td:first-child{width:46%;}
+}
+</style>
+<script defer src="/_vercel/insights/script.js"></script>
+<script src="i18n.js"></script>
+</head>
+<body>
+<nav>
+  <div class="nav-logo"><a href="index.html"><img src="logo.jpg" alt="Raft & Draft" /></a></div>
+  <div class="nav-links">
+    <a href="contest.html" class="nav-contest active" data-i18n="nav_contest">Конкурс</a>
+    <a href="library.html" data-i18n="nav_library">Библиотека</a>
+    <a href="guidelines.html" data-i18n="nav_guidelines">Гайдлайны</a>
+    <a href="about.html" data-i18n="nav_about">О журнале</a>
+    <a href="#" id="nav-submit-link" target="_blank" class="nav-submit" data-i18n="nav_submit">Подать работу</a>
+    <button class="lang-btn" id="lang-btn" onclick="rdToggleLang()">EN</button>
+  </div>
+</nav>
+<div class="site">
+  <div class="page-header">
+    <div class="page-kicker">Конкурс · прием до 29 октября</div>
+    <h1 class="page-title">Первый конкурс короткой прозы Raft & Draft</h1>
+    <div class="page-lead">У многих в столе лежит рассказ, который так никто и не прочитал. Мы хотим его прочитать.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Коротко</div>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-card-type">Что присылать</div>
+        <div class="req-card-line">Проза до 1500 слов</div>
+        <div class="req-card-line">На русском языке</div>
+        <div class="req-card-line">Тема и жанр свободные</div>
+        <div class="req-card-line">Можно написанное раньше</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">Кто участвует</div>
+        <div class="req-card-line">Авторы до 18 лет включительно</div>
+        <div class="req-card-line">Из любой страны</div>
+        <div class="req-card-line">Одна работа от автора</div>
+        <div class="req-card-line">Участие бесплатное</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">Что получает каждый</div>
+        <div class="req-card-line">Публикация на сайте журнала</div>
+        <div class="req-card-line">Сертификат участника</div>
+        <div class="req-card-line">Чтение независимым жюри</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Призы</div>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-card-type">1 место</div>
+        <div class="prize-sum">2500 ₽</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">2 место</div>
+        <div class="prize-sum">1500 ₽</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">3 место</div>
+        <div class="prize-sum">1000 ₽</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;">
+      <div class="rule"><span class="rule-dot">—</span><span>Десять финалистов получают диплом и письменный отзыв жюри</span></div>
+      <div class="rule"><span class="rule-dot">—</span><span>Каждая работа, соответствующая положению, публикуется на сайте журнала</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Сроки</div>
+    <table class="dates">
+      <tr><td>Прием работ</td><td>до 29 октября 2026 года, 23:59 по Москве</td></tr>
+      <tr><td>Состав жюри</td><td>объявим до 22 октября</td></tr>
+      <tr><td>Шорт-лист</td><td>8 ноября</td></tr>
+      <tr><td>Итоги</td><td>15 ноября</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Как мы судим</div>
+    <div class="rule"><span class="rule-dot">—</span><span>Работы оценивает независимое жюри. Главный редактор в оценке не участвует</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>Судьи получают тексты под номерами, без имени, возраста и страны автора</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>Четыре критерия: собственный голос, владение языком, цельность текста, сила воздействия</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>После итогов мы публикуем таблицу оценок шорт-листа</span></div>
+  </div>
+
+  <div class="submit-block">
+    <a href="#" id="contest-submit" target="_blank" rel="noopener" class="submit-btn is-off">Подать работу на конкурс</a>
+    <div class="submit-note" id="contest-submit-note">Форма подачи откроется в день объявления конкурса.</div>
+  </div>
+
+  <div class="section terms" id="rules">
+    <div class="section-label">Положение о конкурсе</div>
+
+    <h3>1. Общее</h3>
+    <p>Конкурс проводит независимый литературный журнал Raft & Draft. Участие бесплатное.</p>
+
+    <h3>2. Кто может участвовать</h3>
+    <p>Авторы в возрасте до 18 лет включительно на день подачи, из любой страны.</p>
+
+    <h3>3. Что принимается</h3>
+    <p class="cl"><b>3.1.</b>Проза объемом до 1500 слов. Тема и жанр свободные.</p>
+    <p class="cl"><b>3.2.</b>Язык работы: русский.</p>
+    <p class="cl"><b>3.3.</b>Один автор подает одну работу.</p>
+    <p class="cl"><b>3.4.</b>Можно подать текст, написанный раньше, в том числе выложенный в личном блоге или в соцсетях.</p>
+    <p class="cl"><b>3.5.</b>Не принимаются: работы, уже опубликованные в Raft & Draft; работы, занявшие призовые места в других конкурсах; тексты, созданные полностью или частично с помощью ИИ; чужие тексты.</p>
+
+    <h3>4. Сроки</h3>
+    <p>Прием работ: со дня объявления конкурса по 29 октября 2026 года, до 23:59 по московскому времени.</p>
+    <p>Шорт-лист: 8 ноября 2026 года. Итоги: 15 ноября 2026 года.</p>
+    <p>Шорт-лист и итоги публикуются в Telegram-канале журнала.</p>
+
+    <h3>5. Как подать работу</h3>
+    <p>Через форму конкурса. Ссылка на форму опубликована на этой странице и в Telegram-канале журнала. В тексте работы не должно быть имени автора.</p>
+
+    <h3>6. Жюри и оценка</h3>
+    <p class="cl"><b>6.1.</b>Работы оценивает независимое жюри, в котором не менее трех человек. Состав жюри публикуется в Telegram-канале журнала не позднее 22 октября 2026 года.</p>
+    <p class="cl"><b>6.2.</b>Главный редактор журнала работы не оценивает. Редакция проверяет соответствие работ этому положению и передает их жюри под номерами, без имени, возраста и страны автора.</p>
+    <p class="cl"><b>6.3.</b>Член жюри, узнавший автора работы, эту работу не оценивает.</p>
+    <p class="cl"><b>6.4.</b>Первый тур. Каждая работа получает от 1 до 10 баллов по четырем критериям: собственный голос, владение языком, цельность текста, сила воздействия. Если работ больше 40, каждую читают не менее двух членов жюри. Десять работ с наивысшим средним баллом составляют шорт-лист.</p>
+    <p class="cl"><b>6.5.</b>Второй тур. Каждый член жюри читает весь шорт-лист и расставляет работы по местам. Побеждает работа с наименьшей суммой мест.</p>
+    <p class="cl"><b>6.6.</b>При равенстве выше становится работа с более высоким средним баллом за собственный голос. Если равенство на границе шорт-листа сохраняется, в шорт-лист проходят все работы с этим баллом.</p>
+    <p class="cl"><b>6.7.</b>Решение о снятии работы с конкурса за нарушение этого положения жюри принимает большинством голосов.</p>
+    <p class="cl"><b>6.8.</b>После объявления итогов редакция публикует таблицу оценок шорт-листа.</p>
+
+    <h3>7. Призы</h3>
+    <p>1 место: 2500 рублей. 2 место: 1500 рублей. 3 место: 1000 рублей.</p>
+    <p class="cl"><b>7.1.</b>Победители и авторы шорт-листа получают диплом и письменный отзыв жюри. Все участники получают сертификат.</p>
+    <p class="cl"><b>7.2.</b>Приз выплачивается переводом на карту победителя или его родителя (законного представителя) в течение 14 дней после объявления итогов. Если перевод в страну победителя невозможен, приз выдается равноценным подарочным сертификатом.</p>
+    <p class="cl"><b>7.3.</b>Победители подтверждают возраст через родителя (законного представителя).</p>
+
+    <h3>8. Публикация</h3>
+    <p class="cl"><b>8.1.</b>Подавая работу на конкурс, автор соглашается на ее публикацию на сайте журнала. Каждая работа, соответствующая этому положению, публикуется.</p>
+    <p class="cl"><b>8.2.</b>Работы, не вошедшие в шорт-лист, публикуются с 8 ноября 2026 года. Работы шорт-листа публикуются после объявления итогов. Все работы выходят не позднее 20 декабря 2026 года.</p>
+    <p class="cl"><b>8.3.</b>Перед публикацией редакция вносит только корректорскую правку. Содержание работы не меняется.</p>
+    <p class="cl"><b>8.4.</b>Автор сохраняет все права на свой текст и дает журналу право на однократную публикацию онлайн.</p>
+
+    <h3>9. Персональные данные</h3>
+    <p>Данные из формы используются только для связи с автором и не передаются третьим лицам. Жюри их не видит.</p>
+
+    <h3>10. Прочее</h3>
+    <p>Условия конкурса после начала приема работ не меняются.</p>
+  </div>
+
+  <div class="section" style="border-bottom:none;">
+    <div class="policy-block">
+      <div class="policy-text">Положение одним файлом и вопросы по конкурсу: <a href="https://t.me/cosmi0" target="_blank" rel="noopener">@cosmi0 в Telegram</a></div>
+      <a href="contest-rules.pdf" target="_blank" class="policy-btn">Скачать PDF</a>
+    </div>
+  </div>
+
+  <div class="subscribe-strip" style="border-top:1px solid #ddd;">
+    <div class="subscribe-label" data-i18n="subscribe_label">Рассылка</div>
+    <div class="subscribe-text" data-i18n="subscribe_text">Новые работы — сразу на почту.</div>
+    <form action="https://raft-and-draft.us2.list-manage.com/subscribe/post?u=214012e6e7b78ed0c2fc0a140&id=7ea7b3c929&f_id=0046c2e1f0" method="post" target="_blank" class="subscribe-form">
+      <input type="email" name="EMAIL" placeholder="your@email.com" data-i18n-placeholder="subscribe_placeholder" required class="subscribe-input" />
+      <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_214012e6e7b78ed0c2fc0a140_7ea7b3c929" tabindex="-1" value=""></div>
+      <button type="submit" class="subscribe-btn" data-i18n="subscribe_btn">Подписаться</button>
+    </form>
+  </div>
+  <div class="footer" style="margin-top:0;">
+    <div class="footer-copy" data-i18n="footer_copy">© 2026 Raft & Draft. Все права защищены.</div>
+  </div>
+</div>
+<script>
+// Ссылка на форму конкурса. Пока строка пустая, кнопка неактивна.
+// Чтобы открыть прием, вставь ссылку между кавычками: 'https://forms.gle/...'
+var CONTEST_FORM_URL = '';
+
+rdApplyStatic();
+(function(){
+  var btn = document.getElementById('contest-submit');
+  var note = document.getElementById('contest-submit-note');
+  if (CONTEST_FORM_URL) {
+    btn.href = CONTEST_FORM_URL;
+    btn.classList.remove('is-off');
+    note.textContent = 'Прием до 29 октября 2026 года, 23:59 по Москве. Не указывайте в тексте рассказа свое имя.';
+  }
+})();
+</script>
+</body>
+</html>
