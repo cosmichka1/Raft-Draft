@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Конкурс короткой прозы — Raft & Draft</title>
+<title data-i18n="title_contest">Конкурс короткой прозы — Raft & Draft</title>
 <meta name="description" content="Первый конкурс короткой прозы Raft & Draft: рассказы до 1500 слов, авторы до 18 лет, денежные призы и публикация для каждого участника. Прием до 29 октября 2026.">
 <meta property="og:title" content="Первый конкурс короткой прозы Raft & Draft">
 <meta property="og:description" content="Рассказы до 1500 слов, авторы до 18 лет. Денежные призы, независимое жюри, публикация для каждого участника. Прием до 29 октября.">
@@ -75,6 +75,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
   .policy-block{flex-direction:column;align-items:flex-start;}
   .dates td:first-child{width:46%;}
 }
+html[lang="en"] .lang-ru{display:none!important;}
+html:not([lang="en"]) .lang-en{display:none!important;}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 <script src="i18n.js"></script>
@@ -92,6 +94,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
   </div>
 </nav>
 <div class="site">
+  <div class="lang-ru">
   <div class="page-header">
     <div class="page-kicker">Конкурс · прием до 29 октября</div>
     <h1 class="page-title">Первый конкурс короткой прозы Raft & Draft</h1>
@@ -165,8 +168,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
   </div>
 
   <div class="submit-block">
-    <a href="#" id="contest-submit" target="_blank" rel="noopener" class="submit-btn is-off">Подать работу на конкурс</a>
-    <div class="submit-note" id="contest-submit-note">Форма подачи откроется в день объявления конкурса.</div>
+    <a href="#" target="_blank" rel="noopener" class="submit-btn is-off contest-submit">Подать работу на конкурс</a>
+    <div class="submit-note contest-submit-note">Форма подачи откроется в день объявления конкурса.</div>
   </div>
 
   <div class="section terms" id="rules">
@@ -229,6 +232,151 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
     </div>
   </div>
 
+  </div>
+
+  <div class="lang-en">
+  <div class="page-header">
+    <div class="page-kicker">Contest · open until October 29</div>
+    <h1 class="page-title">The First Raft & Draft Short Prose Contest</h1>
+    <div class="page-lead">Many people have a story in a drawer that no one has ever read. We want to read it.</div>
+  </div>
+
+  <div class="section">
+    <div class="rule"><span class="rule-dot">—</span><span>This contest is for stories written in Russian. The journal itself accepts work in Russian and English all year round.</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">At a glance</div>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-card-type">What to send</div>
+        <div class="req-card-line">Prose up to 1,500 words</div>
+        <div class="req-card-line">In Russian</div>
+        <div class="req-card-line">Any theme and genre</div>
+        <div class="req-card-line">Earlier work is welcome</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">Who can enter</div>
+        <div class="req-card-line">Writers aged 18 and under</div>
+        <div class="req-card-line">From any country</div>
+        <div class="req-card-line">One story per writer</div>
+        <div class="req-card-line">Free to enter</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">Every writer gets</div>
+        <div class="req-card-line">Publication on the journal's website</div>
+        <div class="req-card-line">A certificate of participation</div>
+        <div class="req-card-line">A reading by an independent jury</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Prizes</div>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-card-type">1st place</div>
+        <div class="prize-sum">2,500 ₽</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">2nd place</div>
+        <div class="prize-sum">1,500 ₽</div>
+      </div>
+      <div class="req-card">
+        <div class="req-card-type">3rd place</div>
+        <div class="prize-sum">1,000 ₽</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;">
+      <div class="rule"><span class="rule-dot">—</span><span>Ten finalists receive a diploma and written feedback from the jury</span></div>
+      <div class="rule"><span class="rule-dot">—</span><span>Every story that meets the rules is published on the journal's website</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Dates</div>
+    <table class="dates">
+      <tr><td>Submissions</td><td>until October 29, 2026, 11:59 p.m. Moscow time</td></tr>
+      <tr><td>Jury</td><td>introduced in our Telegram channel</td></tr>
+      <tr><td>Shortlist</td><td>November 8</td></tr>
+      <tr><td>Results</td><td>November 15</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-label">How we judge</div>
+    <div class="rule"><span class="rule-dot">—</span><span>An independent jury reads the stories. The editor-in-chief does not judge</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>Judges get numbered texts, with no name, age, or country</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>Four criteria: original voice, command of language, wholeness of the text, impact</span></div>
+    <div class="rule"><span class="rule-dot">—</span><span>After the results, we publish the shortlist scores</span></div>
+  </div>
+
+  <div class="submit-block">
+    <a href="#" target="_blank" rel="noopener" class="submit-btn is-off contest-submit">Submit to the contest</a>
+    <div class="submit-note contest-submit-note">The submission form opens on the day the contest is announced.</div>
+  </div>
+
+  <div class="section terms">
+    <div class="section-label">Contest rules</div>
+
+    <h3>1. General</h3>
+    <p>The contest is run by Raft & Draft, an independent literary journal. Entry is free.</p>
+
+    <h3>2. Who can enter</h3>
+    <p>Writers aged 18 and under on the day they submit, from any country.</p>
+
+    <h3>3. What we accept</h3>
+    <p class="cl"><b>3.1.</b>Prose up to 1,500 words. Any theme and genre.</p>
+    <p class="cl"><b>3.2.</b>Language: Russian.</p>
+    <p class="cl"><b>3.3.</b>One story per writer.</p>
+    <p class="cl"><b>3.4.</b>You may submit a story written earlier, including one posted on a personal blog or social media.</p>
+    <p class="cl"><b>3.5.</b>We do not accept: work already published in Raft & Draft; work that has won a prize in another contest; texts written fully or partly with AI; texts by someone else.</p>
+
+    <h3>4. Dates</h3>
+    <p>Submissions: from the day the contest is announced until October 29, 2026, 11:59 p.m. Moscow time.</p>
+    <p>Shortlist: November 8, 2026. Results: November 15, 2026.</p>
+    <p>The shortlist and results are posted in the journal's Telegram channel.</p>
+
+    <h3>5. How to submit</h3>
+    <p>Through the contest form. The link is on this page and in the journal's Telegram channel. The author's name must not appear in the text of the story.</p>
+
+    <h3>6. Jury and judging</h3>
+    <p class="cl"><b>6.1.</b>An independent jury of at least three people judges the stories. The jury is introduced in the journal's Telegram channel.</p>
+    <p class="cl"><b>6.2.</b>The editor-in-chief does not judge. The editors check that each story meets these rules and pass it to the jury under a number, with no name, age, or country.</p>
+    <p class="cl"><b>6.3.</b>A juror who recognizes the author of a story does not judge that story.</p>
+    <p class="cl"><b>6.4.</b>Round one. Each story gets 1 to 10 points on four criteria: original voice, command of language, wholeness of the text, impact. If there are more than 40 stories, at least two jurors read each one. The ten stories with the highest average score make the shortlist.</p>
+    <p class="cl"><b>6.5.</b>Round two. Each juror reads the whole shortlist and ranks the stories. The story with the lowest total rank wins.</p>
+    <p class="cl"><b>6.6.</b>In a tie, the story with the higher average score for original voice ranks higher. If a tie remains at the shortlist cutoff, all stories with that score make the shortlist.</p>
+    <p class="cl"><b>6.7.</b>The jury decides by majority vote whether to remove a story that breaks these rules.</p>
+    <p class="cl"><b>6.8.</b>After the results, the editors publish the shortlist scores.</p>
+
+    <h3>7. Prizes</h3>
+    <p>1st place: 2,500 rubles. 2nd place: 1,500 rubles. 3rd place: 1,000 rubles.</p>
+    <p class="cl"><b>7.1.</b>Winners and shortlisted writers receive a diploma and written feedback from the jury. Every writer receives a certificate.</p>
+    <p class="cl"><b>7.2.</b>Prizes are paid to the card of the winner or their parent (legal guardian) within 14 days of the results. If a transfer to the winner's country is not possible, the prize is given as a gift card of equal value.</p>
+    <p class="cl"><b>7.3.</b>Winners confirm their age through a parent (legal guardian).</p>
+
+    <h3>8. Publication</h3>
+    <p class="cl"><b>8.1.</b>By submitting, the author agrees to publication on the journal's website. Every story that meets these rules is published.</p>
+    <p class="cl"><b>8.2.</b>Stories outside the shortlist are published from November 8, 2026. Shortlisted stories are published after the results. All stories are out by December 20, 2026.</p>
+    <p class="cl"><b>8.3.</b>Before publication, the editors only proofread. The content of the story does not change.</p>
+    <p class="cl"><b>8.4.</b>The author keeps all rights to the text and gives the journal the right to publish it online once.</p>
+
+    <h3>9. Personal data</h3>
+    <p>Data from the form is used only to contact the author and is not shared with anyone. The jury does not see it.</p>
+
+    <h3>10. Other</h3>
+    <p>The contest terms do not change after submissions open.</p>
+  </div>
+
+  <div class="section" style="border-bottom:none;">
+    <div class="policy-block">
+      <div class="policy-text">Rules as one file and questions about the contest: <a href="https://t.me/cosmi0" target="_blank" rel="noopener">@cosmi0 on Telegram</a></div>
+      <a href="contest-rules.pdf" target="_blank" class="policy-btn">PDF (in Russian)</a>
+    </div>
+  </div>
+  </div>
+
   <div class="subscribe-strip" style="border-top:1px solid #ddd;">
     <div class="subscribe-label" data-i18n="subscribe_label">Рассылка</div>
     <div class="subscribe-text" data-i18n="subscribe_text">Новые работы — сразу на почту.</div>
@@ -249,13 +397,14 @@ var CONTEST_FORM_URL = 'https://forms.gle/57AFAxsiAQRCadvS6';
 
 rdApplyStatic();
 (function(){
-  var btn = document.getElementById('contest-submit');
-  var note = document.getElementById('contest-submit-note');
-  if (CONTEST_FORM_URL) {
+  if (!CONTEST_FORM_URL) return;
+  document.querySelectorAll('.contest-submit').forEach(function(btn){
     btn.href = CONTEST_FORM_URL;
     btn.classList.remove('is-off');
-    note.textContent = 'Прием до 29 октября 2026 года, 23:59 по Москве. Не указывайте в тексте рассказа свое имя.';
-  }
+  });
+  document.querySelectorAll('.contest-submit-note').forEach(function(note){
+    note.textContent = rdT('ct_submit_note_open');
+  });
 })();
 </script>
 </body>

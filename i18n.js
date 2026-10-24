@@ -87,6 +87,13 @@ const RD_STR = {
     ab_contact_label: 'Связаться',
     ab_contact_telegram_label: 'Telegram',
     ab_contact_site_label: 'Сайт',
+    // page titles
+    title_library: 'Библиотека — Raft & Draft',
+    title_guidelines: 'Гайдлайны — Raft & Draft',
+    title_about: 'О журнале — Raft & Draft',
+    title_contest: 'Конкурс короткой прозы — Raft & Draft',
+    // contest page
+    ct_submit_note_open: 'Прием до 29 октября 2026 года, 23:59 по Москве. Не указывайте в тексте рассказа свое имя.',
   },
   en: {
     nav_contest: 'Contest',
@@ -157,21 +164,207 @@ const RD_STR = {
     ab_contact_label: 'Contact',
     ab_contact_telegram_label: 'Telegram',
     ab_contact_site_label: 'Website',
+    title_library: 'Library — Raft & Draft',
+    title_guidelines: 'Guidelines — Raft & Draft',
+    title_about: 'About — Raft & Draft',
+    title_contest: 'Short Prose Contest — Raft & Draft',
+    ct_submit_note_open: 'Open until October 29, 2026, 11:59 p.m. Moscow time. Do not put your name in the text of your story.',
   }
 };
 
+// Language choice, in order of priority:
+// 1) ?lang=en or ?lang=ru in the address (remembered for the next pages);
+// 2) the reader's earlier choice;
+// 3) the browser language: Russian-speaking browsers get RU, everyone else gets EN.
+function rdUrlLang() {
+  try {
+    var p = new URLSearchParams(location.search).get('lang');
+    return (p === 'en' || p === 'ru') ? p : null;
+  } catch (e) { return null; }
+}
+(function rdRememberUrlLang() {
+  var p = rdUrlLang();
+  if (p) { try { localStorage.setItem('rd_lang', p); } catch (e) {} }
+})();
 function rdLang() {
-  return localStorage.getItem('rd_lang') === 'en' ? 'en' : 'ru';
+  var p = rdUrlLang();
+  if (p) return p;
+  var saved = null;
+  try { saved = localStorage.getItem('rd_lang'); } catch (e) {}
+  if (saved === 'en' || saved === 'ru') return saved;
+  var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+  for (var i = 0; i < langs.length; i++) {
+    if (/^(ru|uk|be|kk)\b/i.test(langs[i] || '')) return 'ru';
+  }
+  return 'en';
 }
 function rdT(key) {
-  return RD_STR[rdLang()][key] || key;
+  return RD_STR[rdLang()][key] || RD_STR.ru[key] || key;
 }
 function rdTypeLabel(ruValue) {
   return RD_TYPE_LABEL[rdLang()][ruValue] || ruValue;
 }
 function rdToggleLang() {
-  localStorage.setItem('rd_lang', rdLang() === 'ru' ? 'en' : 'ru');
-  location.reload();
+  var next = rdLang() === 'ru' ? 'en' : 'ru';
+  try { localStorage.setItem('rd_lang', next); } catch (e) {}
+  try {
+    var u = new URL(location.href);
+    u.searchParams.set('lang', next);
+    location.href = u.href;
+  } catch (e) { location.reload(); }
+}
+
+// ---------- English display of the journal's own data ----------
+// The works themselves (title, text, author's note) stay in the original language.
+// Everything the journal writes about a work is shown in English in EN mode:
+// a *_en column in Supabase wins (author_en, city_en, genre_en, description_en);
+// without it, names are transliterated and countries/genres come from the dictionaries below.
+
+var RD_TRANSLIT = {
+  'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'zh','з':'z','и':'i','й':'y',
+  'к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f',
+  'х':'kh','ц':'ts','ч':'ch','ш':'sh','щ':'shch','ъ':'','ы':'y','ь':'','э':'e','ю':'yu','я':'ya',
+  'і':'i','ї':'yi','є':'ye','ґ':'g','ә':'a','ғ':'g','қ':'k','ң':'n','ө':'o','ұ':'u','ү':'u','һ':'h'
+};
+function rdTranslit(s) {
+  if (!s) return s;
+  var out = '';
+  var chars = Array.from(String(s));
+  for (var i = 0; i < chars.length; i++) {
+    var ch = chars[i];
+    var low = ch.toLowerCase();
+    if (!(low in RD_TRANSLIT)) { out += ch; continue; }
+    var t = RD_TRANSLIT[low];
+    if (ch !== low && t) {
+      var nextCh = chars[i + 1] || '';
+      var nextUpper = nextCh && nextCh !== nextCh.toLowerCase();
+      t = nextUpper ? t.toUpperCase() : t.charAt(0).toUpperCase() + t.slice(1);
+    }
+    out += t;
+  }
+  return out;
+}
+
+var RD_PLACES = {
+  'россия':'Russia','рф':'Russia','российская федерация':'Russia',
+  'беларусь':'Belarus','белоруссия':'Belarus','казахстан':'Kazakhstan','азербайджан':'Azerbaijan',
+  'армения':'Armenia','грузия':'Georgia','украина':'Ukraine','узбекистан':'Uzbekistan',
+  'кыргызстан':'Kyrgyzstan','киргизия':'Kyrgyzstan','таджикистан':'Tajikistan','туркменистан':'Turkmenistan',
+  'молдова':'Moldova','молдавия':'Moldova','латвия':'Latvia','литва':'Lithuania','эстония':'Estonia',
+  'сша':'USA','соединённые штаты':'USA','соединенные штаты':'USA','америка':'USA',
+  'великобритания':'UK','англия':'UK','германия':'Germany','франция':'France','италия':'Italy',
+  'испания':'Spain','португалия':'Portugal','нидерланды':'Netherlands','бельгия':'Belgium',
+  'швейцария':'Switzerland','австрия':'Austria','польша':'Poland','чехия':'Czech Republic',
+  'словакия':'Slovakia','венгрия':'Hungary','румыния':'Romania','болгария':'Bulgaria','сербия':'Serbia',
+  'черногория':'Montenegro','хорватия':'Croatia','греция':'Greece','кипр':'Cyprus','турция':'Turkey',
+  'израиль':'Israel','оаэ':'UAE','египет':'Egypt','финляндия':'Finland','швеция':'Sweden',
+  'норвегия':'Norway','дания':'Denmark','ирландия':'Ireland','канада':'Canada','мексика':'Mexico',
+  'бразилия':'Brazil','аргентина':'Argentina','австралия':'Australia','новая зеландия':'New Zealand',
+  'китай':'China','япония':'Japan','корея':'South Korea','южная корея':'South Korea','индия':'India',
+  'таиланд':'Thailand','вьетнам':'Vietnam','индонезия':'Indonesia','монголия':'Mongolia',
+  'москва':'Moscow','санкт-петербург':'Saint Petersburg','петербург':'Saint Petersburg','спб':'Saint Petersburg',
+  'минск':'Minsk','алматы':'Almaty','астана':'Astana','баку':'Baku','ереван':'Yerevan','тбилиси':'Tbilisi',
+  'киев':'Kyiv','ташкент':'Tashkent','бишкек':'Bishkek'
+};
+function rdPlace(s) {
+  if (!s) return s;
+  return String(s).split(',').map(function(part) {
+    var p = part.trim();
+    var hit = RD_PLACES[p.toLowerCase().replace(/ё/g, 'е')] || RD_PLACES[p.toLowerCase()];
+    return hit || rdTranslit(p);
+  }).join(', ');
+}
+
+var RD_GENRES = {
+  'драма':'drama','социальная драма':'social drama','психологическая драма':'psychological drama',
+  'семейная драма':'family drama','комедия':'comedy','трагикомедия':'tragicomedy','трагедия':'tragedy',
+  'мелодрама':'melodrama','романтика':'romance','любовный роман':'romance','роман':'novel',
+  'хоррор':'horror','ужасы':'horror','мистика':'mystic fiction','мистический':'mystic fiction',
+  'триллер':'thriller','психологический триллер':'psychological thriller','детектив':'detective fiction',
+  'нуар':'noir','криминал':'crime','фэнтези':'fantasy','темное фэнтези':'dark fantasy','тёмное фэнтези':'dark fantasy',
+  'городское фэнтези':'urban fantasy','фантастика':'science fiction','научная фантастика':'science fiction',
+  'антиутопия':'dystopia','утопия':'utopia','постапокалипсис':'post-apocalyptic','киберпанк':'cyberpunk',
+  'магреализм':'magical realism','магический реализм':'magical realism','реализм':'realism',
+  'сюрреализм':'surrealism','абсурд':'absurdism','притча':'parable','сказка':'fairy tale','басня':'fable',
+  'легенда':'legend','миф':'myth','мифология':'mythology','повседневность':'slice of life',
+  'слайс оф лайф':'slice of life','слайс-оф-лайф':'slice of life','автофикшн':'autofiction',
+  'автобиографический':'autobiographical','автобиография':'autobiography','мемуары':'memoir',
+  'приключения':'adventure','приключение':'adventure','экшн':'action','военный':'war fiction',
+  'военная проза':'war fiction','историческая проза':'historical fiction','исторический':'historical fiction',
+  'сатира':'satire','юмор':'humor','пародия':'parody','ирония':'irony',
+  'психологическая проза':'psychological fiction','психологический':'psychological',
+  'философская проза':'philosophical fiction','философский':'philosophical','философия':'philosophy',
+  'подростковая проза':'young adult fiction','янг эдалт':'young adult','young adult':'young adult',
+  'лирика':'lyric poetry','любовная лирика':'love poetry','философская лирика':'philosophical poetry',
+  'гражданская лирика':'civic poetry','пейзажная лирика':'nature poetry','верлибр':'free verse',
+  'свободный стих':'free verse','стихотворение в прозе':'prose poem','поэма':'long poem','баллада':'ballad',
+  'сонет':'sonnet','хокку':'haiku','рассказ':'short story','новелла':'novella','повесть':'novella',
+  'миниатюра':'flash fiction','зарисовка':'sketch','этюд':'sketch','очерк':'essay',
+  'эссе':'essay','публицистика':'journalism','статья':'article','рецензия':'review','критика':'criticism',
+  'литературная критика':'literary criticism','кинокритика':'film criticism','анализ':'analysis',
+  'исследование':'research','интервью':'interview','монолог':'monologue','диалог':'dialogue',
+  'короткометражный':'short film','короткий метр':'short film','сценарий':'screenplay','пьеса':'play',
+  'триллер-драма':'thriller drama','драмеди':'dramedy','экзистенциальный':'existential',
+  'экзистенциальная проза':'existential fiction','готика':'gothic','готический':'gothic',
+  'боди-хоррор':'body horror','психологический хоррор':'psychological horror','спекулятивная проза':'speculative fiction',
+  'стимпанк':'steampunk','космоопера':'space opera','фанфик':'fan fiction','dark academia':'dark academia',
+  'темная академия':'dark academia','тёмная академия':'dark academia','взросление':'coming of age',
+  'роман воспитания':'coming of age','школа':'school story','дружба':'friendship','любовь':'love',
+  'одиночество':'loneliness','семья':'family','депрессия':'depression','утрата':'loss'
+};
+// The journal's fixed genre list: [Russian, English]. The admin form offers only these,
+// so every work is labeled the same way in both languages.
+var RD_GENRE_LIST = [
+  ['Лирика', 'Lyric poetry'],
+  ['Любовная лирика', 'Love poetry'],
+  ['Исповедальная лирика', 'Confessional poetry'],
+  ['Лирическая проза', 'Lyrical prose'],
+  ['Драма', 'Drama'],
+  ['Романтика', 'Romance'],
+  ['Фэнтези', 'Fantasy'],
+  ['Фантастика', 'Science fiction'],
+  ['Постапокалипсис', 'Post-apocalyptic'],
+  ['Хоррор', 'Horror'],
+  ['Мистика', 'Mystery'],
+  ['Комедия', 'Comedy'],
+  ['Философия', 'Philosophy'],
+  ['Психология', 'Psychology'],
+  ['Научпоп', 'Popular science'],
+  ['Исследование', 'Research'],
+  ['История и культура', 'History & culture']
+];
+// Countries offered in the admin form: [Russian, English].
+var RD_COUNTRY_LIST = [
+  ['Россия', 'Russia'], ['Беларусь', 'Belarus'], ['Казахстан', 'Kazakhstan'], ['Кыргызстан', 'Kyrgyzstan'],
+  ['Узбекистан', 'Uzbekistan'], ['Таджикистан', 'Tajikistan'], ['Азербайджан', 'Azerbaijan'], ['Армения', 'Armenia'],
+  ['Грузия', 'Georgia'], ['Молдова', 'Moldova'], ['Украина', 'Ukraine'], ['Латвия', 'Latvia'], ['Литва', 'Lithuania'],
+  ['Эстония', 'Estonia'], ['Сербия', 'Serbia'], ['Турция', 'Turkey'], ['Израиль', 'Israel'], ['Германия', 'Germany'],
+  ['Великобритания', 'UK'], ['США', 'USA'], ['Канада', 'Canada']
+];
+RD_GENRE_LIST.forEach(function(g) { RD_GENRES[g[0].toLowerCase()] = g[1]; });
+
+function rdGenre(s) {
+  if (!s) return s;
+  var parts = String(s).split(/\s*[,/;]\s*/).filter(Boolean);
+  var out = parts.map(function(p) {
+    var key = p.trim().toLowerCase();
+    return RD_GENRES[key] || RD_GENRES[key.replace(/ё/g, 'е')] || p.trim();
+  }).join(', ');
+  return out.charAt(0).toUpperCase() + out.slice(1);
+}
+
+// Text the journal shows about a work, in the reader's language.
+function rdW(w, field) {
+  var v = w[field];
+  if (rdLang() === 'ru') return v;
+  var en = w[field + '_en'];
+  if (en) return en;
+  if (!v) return v;
+  if (field === 'author') return rdTranslit(v);
+  if (field === 'city') return rdPlace(v);
+  if (field === 'genre') return rdGenre(v);
+  if (field === 'description') return /[А-Яа-яЁё]/.test(v) ? null : v;
+  return v;
 }
 function rdDateLocale() {
   return rdLang() === 'ru' ? 'ru-RU' : 'en-US';
@@ -199,3 +392,7 @@ function rdApplyStatic() {
   if (submitBtn) submitBtn.href = RD_FORM_URL[rdLang()];
   document.documentElement.lang = rdLang();
 }
+
+// Set the page language right away, before the body is drawn, so blocks
+// marked .lang-ru / .lang-en never flash in the wrong language.
+document.documentElement.lang = rdLang();

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Библиотека — Raft & Draft</title>
+<title data-i18n="title_library">Библиотека — Raft & Draft</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -132,10 +132,10 @@ list.innerHTML = works.map((w, i) => `
 <div class="card-type">${rdTypeLabel(w.type)}</div>
 <a class="card-title" href="work.html?id=${w.id}">${w.title}</a>
 <div class="card-tags">
-<span class="tag">${w.author}</span>
+<span class="tag">${rdW(w,'author')}</span>
 ${w.age ? '<span class="tag">' + w.age + rdT('age_suffix') + '</span>' : ''}
-${w.city ? '<span class="tag">' + w.city + '</span>' : ''}
-<span class="tag genre">${w.genre}</span>
+${w.city ? '<span class="tag">' + rdW(w,'city') + '</span>' : ''}
+${w.genre ? '<span class="tag genre">' + rdW(w,'genre') + '</span>' : ''}
 </div>
 <div class="card-meta">
 <span class="pill">${rdWorkDate(w).toLocaleDateString(rdDateLocale(), {day:'numeric',month:'long',year:'numeric'})}</span>

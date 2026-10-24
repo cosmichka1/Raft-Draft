@@ -160,17 +160,17 @@ document.getElementById('work-content').innerHTML = `
 <div class="work-type">${rdTypeLabel(w.type)}</div>
 <div class="work-title">${w.title}</div>
 <div class="work-tags">
-<span class="tag">${w.author}</span>
+<span class="tag">${rdW(w,'author')}</span>
 ${w.age ? '<span class="tag">' + w.age + rdT('age_suffix') + '</span>' : ''}
-${w.city ? '<span class="tag">' + w.city + '</span>' : ''}
-<span class="tag genre">${w.genre}</span>
+${w.city ? '<span class="tag">' + rdW(w,'city') + '</span>' : ''}
+${w.genre ? '<span class="tag genre">' + rdW(w,'genre') + '</span>' : ''}
 </div>
 <div class="work-meta">
 <span class="pill">${rdWorkDate(w).toLocaleDateString(rdDateLocale(),{day:'numeric',month:'long',year:'numeric'})}</span>
 <button class="likes-btn" data-likes="${w.likes}" onclick="like(parseInt(this.dataset.likes),this)">♡ ${w.likes}</button>
 </div>
 </div>
-${w.description ? '<div class="work-description">' + w.description + '</div>' : ''}
+${rdW(w,'description') ? '<div class="work-description">' + rdW(w,'description') + '</div>' : ''}
 ${w.author_note ? '<div class="author-note"><div class="author-note-label">' + rdT('wk_author_note_label') + '</div><div class="author-note-text">' + w.author_note + '</div></div>' : ''}
 <div class="work-body">${rdRenderBody(w)}</div>
 <div class="comments-section">

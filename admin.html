@@ -50,6 +50,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 .delete-empty{font-size:13px;color:#aaa;padding:16px 0;}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
+<script src="i18n.js"></script>
 </head>
 <body>
 <nav>
@@ -71,12 +72,13 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 <div id="admin-panel" style="display:none;">
 <div class="admin-wrap">
 <div class="admin-title">Добавить работу</div>
-<div class="form-row">
 <div class="form-group"><label class="form-label">Название</label><input id="f-title" placeholder="Терпение" /></div>
-<div class="form-group"><label class="form-label">Автор</label><input id="f-author" placeholder="Анна Северова" /></div>
+<div class="form-row">
+<div class="form-group"><label class="form-label">Автор</label><input id="f-author" placeholder="Анна Северова" oninput="rdAutoAuthorEn()" /></div>
+<div class="form-group"><label class="form-label">Автор латиницей (для EN)</label><input id="f-author-en" placeholder="Anna Severova" oninput="this.dataset.touched='1'" /></div>
 </div>
 <div class="form-row">
-<div class="form-group"><label class="form-label">Страна</label><input id="f-city" placeholder="Россия" /></div>
+<div class="form-group"><label class="form-label">Страна</label><select id="f-city"></select></div>
 <div class="form-group"><label class="form-label">Дата публикации</label><input type="date" id="f-date" /></div>
 </div>
 <div class="form-row">
@@ -84,10 +86,11 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:18px 2
 <select id="f-type"><option>Проза</option><option>Поэзия</option><option>Сценарий</option><option>Пьеса</option><option>Статья</option><option>Эссе</option></select>
 </div>
 <div class="form-group"><label class="form-label">Жанр</label>
-<input id="f-genre" placeholder="Драма, хоррор, магреализм..." />
+<select id="f-genre"></select>
 </div>
 </div>
-<div class="form-group"><label class="form-label">Описание работы</label><textarea id="f-description" class="short" placeholder="2–3 предложения о чём работа"></textarea></div>
+<div class="form-group"><label class="form-label">Описание работы (по-русски)</label><textarea id="f-description" class="short" placeholder="2–3 предложения о чём работа"></textarea></div>
+<div class="form-group"><label class="form-label">Описание работы (по-английски)</label><textarea id="f-description-en" class="short" placeholder="The same 2–3 sentences in English"></textarea></div>
 <div class="form-group"><label class="form-label">Слова автора</label><textarea id="f-author-note" class="short" placeholder="Примечание или цитата от автора (необязательно)"></textarea></div>
 <div class="form-group"><label class="form-label">Текст работы</label><textarea id="f-content" class="tall" placeholder="Вставьте текст работы..."></textarea></div>
 <button class="submit-btn" onclick="publish()">Опубликовать</button>
@@ -109,6 +112,22 @@ const SUPABASE_KEY = 'sb_publishable_q2fsDKFZ_RATNkQ96JuqlQ_XWQTIv0g';
 const ADMIN_PASSWORD = 'rafdraft2026';
 let allWorksForDelete = [];
 let confirmingId = null;
+
+// Fill the country and genre lists from the journal's fixed lists in i18n.js.
+function rdFillSelect(id, list, emptyLabel) {
+const sel = document.getElementById(id);
+sel.innerHTML = '<option value="">' + emptyLabel + '</option>' +
+list.map((item, i) => '<option value="' + i + '">' + item[0] + ' / ' + item[1] + '</option>').join('');
+}
+rdFillSelect('f-city', RD_COUNTRY_LIST, 'Не указана');
+rdFillSelect('f-genre', RD_GENRE_LIST, 'Без жанра');
+
+// Latin spelling of the author's name fills in by itself until you edit it by hand.
+function rdAutoAuthorEn() {
+const en = document.getElementById('f-author-en');
+if (en.dataset.touched === '1') return;
+en.value = rdTranslit(document.getElementById('f-author').value);
+}
 
 function rdTodayLocal() {
 const d = new Date();
@@ -137,12 +156,20 @@ const title = document.getElementById('f-title').value.trim();
 const author = document.getElementById('f-author').value.trim();
 const content = document.getElementById('f-content').value.trim();
 if (!title || !author || !content) { document.getElementById('pub-msg').textContent = 'Заполните название, автора и текст.'; return; }
+const cityIdx = document.getElementById('f-city').value;
+const genreIdx = document.getElementById('f-genre').value;
+const country = cityIdx === '' ? null : RD_COUNTRY_LIST[+cityIdx];
+const genre = genreIdx === '' ? null : RD_GENRE_LIST[+genreIdx];
 const body = {
 title, author,
-city: document.getElementById('f-city').value.trim() || null,
+author_en: document.getElementById('f-author-en').value.trim() || rdTranslit(author),
+city: country ? country[0] : null,
+city_en: country ? country[1] : null,
 type: document.getElementById('f-type').value,
-genre: document.getElementById('f-genre').value,
+genre: genre ? genre[0] : null,
+genre_en: genre ? genre[1] : null,
 description: document.getElementById('f-description').value.trim() || null,
+description_en: document.getElementById('f-description-en').value.trim() || null,
 author_note: document.getElementById('f-author-note').value.trim() || null,
 published_at: document.getElementById('f-date').value || rdTodayLocal(),
 content, likes: 0
@@ -154,7 +181,10 @@ body: JSON.stringify(body)
 });
 if (res.ok) {
 document.getElementById('pub-msg').textContent = 'Опубликовано!';
-['f-title','f-author','f-city','f-content','f-description','f-author-note'].forEach(id => document.getElementById(id).value = '');
+['f-title','f-author','f-content','f-description','f-author-note','f-author-en','f-description-en'].forEach(id => document.getElementById(id).value = '');
+document.getElementById('f-author-en').dataset.touched = '';
+document.getElementById('f-city').value = '';
+document.getElementById('f-genre').value = '';
 loadWorksForDelete();
 } else {
 const err = await res.text();
